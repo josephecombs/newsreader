@@ -12,9 +12,10 @@ NewsReader.Models.Feed = Backbone.Model.extend({
   
   parse: function (response) {
     if (response.latest_entries) {
-      debugger;
       this.entries().set(response.latest_entries, { parse: true });
       delete response.latest_entries;
     }
+
+    this.set(response, { parse: true });
   }
 });

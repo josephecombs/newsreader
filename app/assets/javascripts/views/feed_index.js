@@ -1,5 +1,5 @@
 /*global NewsReader JST*/
-NewsReader.Views.feedIndex = Backbone.View.extend ({
+NewsReader.Views.FeedIndex = Backbone.View.extend({
   template: JST["feeds/index"],
   
   initialize: function() {
