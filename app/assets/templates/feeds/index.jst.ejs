@@ -1,5 +1,15 @@
 <ul>
   <% feeds.forEach( function (feed) {%>
-    <li><a href="#/feeds/<%= feed.id %>"><%= feed.escape("title") %></a></li>
+    <li>
+      <button class="delete" data-id="<%= feed.escape("id") %>">Delete</button>
+      <a href="#/feeds/<%= feed.id %>"><%= feed.escape("title") %></a>
+    </li>
   <% }) %>
 </ul>
+New Feed:
+<form class="newFeed">
+  <label>Url
+    <input type="text" name="feed[url]">
+  </label>
+  <input type="submit">
+</form>

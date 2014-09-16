@@ -4,6 +4,9 @@ NewsReader.Views.FeedShow = Backbone.View.extend({
   
   initialize: function () {
     this.listenTo(this.model, "sync", this.render);
+    this.listenTo(
+      this.model.entries(), "sync and remove", this.render
+    );
   },
   
   events: { 'click .refresh' : "refreshPage"},
@@ -14,6 +17,14 @@ NewsReader.Views.FeedShow = Backbone.View.extend({
     }
     var rC = this.template({ feed: this.model });
     this.$el.html(rC);
+    
+    var $entries = this.$el.find(".entries");
+    this.model.entries().forEach(function(entry) {
+      var entryShow = new NewsReader.Views.EntryShow({
+        model: entry
+      });
+      $entries.append(entryShow.render().$el);
+    });
     
     return this;
   },
