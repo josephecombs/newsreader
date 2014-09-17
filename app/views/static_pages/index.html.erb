@@ -2,3 +2,12 @@
 <div id='content'></div>
 <a href="#">Index</a>
 <script></script>
+
+<% content_for :backbone do %>
+  <script>
+    console.log("backbone")
+    $(document).ready(function(){
+      NewsReader.initialize();
+    });
+  </script>
+<% end %>

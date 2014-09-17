@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130626183103) do
+ActiveRecord::Schema.define(version: 20140916223712) do
 
   create_table "entries", force: true do |t|
     t.string   "guid",         null: false
@@ -35,5 +35,48 @@ ActiveRecord::Schema.define(version: 20130626183103) do
   end
 
   add_index "feeds", ["url"], name: "index_feeds_on_url", unique: true
+
+  create_table "user_favorite_entries", force: true do |t|
+    t.integer  "user_id",    null: false
+    t.integer  "entry_id",   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_favorite_entries", ["entry_id"], name: "index_user_favorite_entries_on_entry_id"
+  add_index "user_favorite_entries", ["user_id", "entry_id"], name: "index_user_favorite_entries_on_user_id_and_entry_id", unique: true
+  add_index "user_favorite_entries", ["user_id"], name: "index_user_favorite_entries_on_user_id"
+
+  create_table "user_favorite_feeds", force: true do |t|
+    t.integer  "user_id",    null: false
+    t.integer  "feed_id",    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_favorite_feeds", ["feed_id"], name: "index_user_favorite_feeds_on_feed_id"
+  add_index "user_favorite_feeds", ["user_id", "feed_id"], name: "index_user_favorite_feeds_on_user_id_and_feed_id", unique: true
+  add_index "user_favorite_feeds", ["user_id"], name: "index_user_favorite_feeds_on_user_id"
+
+  create_table "user_feeds", force: true do |t|
+    t.integer  "user_id",    null: false
+    t.integer  "feed_id",    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_feeds", ["feed_id"], name: "index_user_feeds_on_feed_id"
+  add_index "user_feeds", ["user_id", "feed_id"], name: "index_user_feeds_on_user_id_and_feed_id", unique: true
+  add_index "user_feeds", ["user_id"], name: "index_user_feeds_on_user_id"
+
+  create_table "users", force: true do |t|
+    t.string   "username",        null: false
+    t.string   "password_digest", null: false
+    t.string   "session_token",   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "users", ["username"], name: "index_users_on_username", unique: true
 
 end

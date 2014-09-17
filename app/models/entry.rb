@@ -1,5 +1,15 @@
 class Entry < ActiveRecord::Base
   belongs_to :feed
+  
+  has_many(
+    :user_favorite_entries
+  )
+  
+  has_many(
+    :favorite_users,
+    through: :user_favorite_entries,
+    source: :user
+  )
 
   def self.create_from_json!(entryData, feed)
     scrub_encoding(entryData)

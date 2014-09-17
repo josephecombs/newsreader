@@ -9,6 +9,7 @@ window.NewsReader = {
   }
 };
 
-$(document).ready(function(){
-  NewsReader.initialize();
-});
+
+// $(document).ready(function(){
+//   NewsReader.initialize();
+// });

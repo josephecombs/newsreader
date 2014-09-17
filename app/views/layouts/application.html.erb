@@ -8,7 +8,27 @@
 </head>
 <body>
 
+
+<% if logged_in? %>
+  Logged in as <%= current_user.username %>
+  <%= button_to "Sign Out", session_url, method: :delete %>
+  <br>
+<% else %>
+  <%= link_to "Log In", new_session_url %>
+  <%= link_to "Register", new_user_url %>
+<% end %>
+
+<%= yield :backbone %>
+
+<% if flash[:errors] %>
+<ul>
+  <% flash[:errors].each do |error| %>
+  <li><%= error %></li>
+  <% end %>
+</ul>
+<% end %>
 <%= yield %>
+
 
 </body>
 </html>

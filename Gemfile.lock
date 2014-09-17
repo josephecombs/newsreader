@@ -40,6 +40,7 @@ GEM
       ejs
       jquery-rails
       railties
+    bcrypt (3.1.7)
     bcrypt-ruby (3.0.1)
     better_errors (1.1.0)
       coderay (>= 1.0.0)
@@ -151,6 +152,7 @@ PLATFORMS
 
 DEPENDENCIES
   backbone-on-rails
+  bcrypt
   bcrypt-ruby (~> 3.0.0)
   better_errors
   binding_of_caller

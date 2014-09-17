@@ -1,0 +1,2 @@
+module UserFavoriteEntriesHelper
+end

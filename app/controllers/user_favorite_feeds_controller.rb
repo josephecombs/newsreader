@@ -1,0 +1,2 @@
+class UserFavoriteFeedsController < ApplicationController
+end
